@@ -4,7 +4,68 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Rock-Paper-Scissors</title>
-        <script src="./script.js"></script>
+        <link rel="stylesheet" href="./css/button.css" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <script src="./script.js" defer></script>
     </head>
-    <body></body>
+    <body>
+        <header>
+            <h1>Rock-Paper-Scissors</h1>
+        </header>
+
+        <main>
+            <div id="GameRounds">
+                <h1 id="RoundsResult">Choose Your Weapon!</h1>
+                <h2 id="RoundsLog">First to score 5 Win The Game</h2>
+            </div>
+
+            <div id="GameLog">
+                <div>
+                    <div id="PlayerSelection" class="sign">?</div>
+                    <div>Player : <span id="PlayerScore">0</span></div>
+                </div>
+                <div>
+                    <div id="CompSelection" class="sign">?</div>
+                    <div>Computer : <span id="CompScore">0</span></div>
+                </div>
+            </div>
+            <div>
+                <h2 id="GameOver"></h2>
+                <h3 id="GameResult"></h3>
+            </div>
+
+            <div id="GameAction">
+                <button
+                    class="button-28 sign selection"
+                    role="button"
+                    id="0"
+                    disabled
+                >
+                    ✊🏿
+                </button>
+                <button
+                    class="button-28 sign selection"
+                    role="button"
+                    id="1"
+                    disabled
+                >
+                    🖐🏻
+                </button>
+                <button
+                    class="button-28 sign selection"
+                    role="button"
+                    id="2"
+                    disabled
+                >
+                    ✌🏼
+                </button>
+            </div>
+
+            <div id="PlayGame">
+                <button id="Play" class="button-85" role="button">
+                    Start Game
+                </button>
+            </div>
+        </main>
+    </body>
 </html>
