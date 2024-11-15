@@ -4,9 +4,15 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Rock-Paper-Scissors</title>
+        <script src="./script.js" defer></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="./css/button.css" />
         <link rel="stylesheet" href="./css/style.css" />
-        <script src="./script.js" defer></script>
     </head>
     <body>
         <header>
@@ -15,8 +21,8 @@
 
         <main>
             <div id="GameRounds">
-                <h1 id="RoundsResult">Choose Your Weapon!</h1>
-                <h2 id="RoundsLog">First to score 5 Win The Game</h2>
+                <h2 id="RoundsResult">Choose Your Weapon!</h1>
+                <h3 id="RoundsLog">First to score 5 Win The Game</h2>
             </div>
 
             <div id="GameLog">
@@ -28,10 +34,6 @@
                     <div id="CompSelection" class="sign">?</div>
                     <div>Computer : <span id="CompScore">0</span></div>
                 </div>
-            </div>
-            <div>
-                <h2 id="GameOver"></h2>
-                <h3 id="GameResult"></h3>
             </div>
 
             <div id="GameAction">
@@ -65,6 +67,24 @@
                 <button id="Play" class="button-85" role="button">
                     Start Game
                 </button>
+            </div>
+
+            <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close">&times;</span>
+                        <h2 id="GameOver"></h2>
+                    </div>
+                    <div class="modal-body">
+                        <p id="GameResult"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="CloseModal" class="button-86" role="button">
+                            Back
+                        </button>
+                    </div>
+                </div>
             </div>
         </main>
     </body>

@@ -2,6 +2,7 @@ const choices = ["rock", "paper", "scissors"];
 const choices2 = ["✊🏿", "🖐🏻", "✌🏼"];
 let computers = 0;
 let players = 0;
+let isGameRunning = false;
 
 const playerScore = document.getElementById("PlayerScore");
 const compScore = document.getElementById("CompScore");
@@ -13,27 +14,76 @@ const roundsResult = document.getElementById("RoundsResult");
 const roundsLog = document.getElementById("RoundsLog");
 const gameOver = document.getElementById("GameOver");
 const gameResult = document.getElementById("GameResult");
+var modal = document.getElementById("myModal");
+var span = document.getElementsByClassName("close")[0];
+var closeModal = document.getElementById("CloseModal");
+
+play.addEventListener("click", () => {
+    const text = play.textContent.trim();
+    if (text == "Start Game") {
+        if (!isGameRunning) {
+            computers = 0;
+            players = 0;
+            scores();
+            play.textContent = "Stop Game";
+            disabledAction(false);
+            gameOver.textContent = "";
+            gameResult.textContent = "";
+
+            isGameRunning = true;
+        }
+    } else {
+        if (isGameRunning) {
+            play.textContent = "Start Game";
+            disabledAction(true);
+            isGameRunning = false; // Set the flag to false when stopping the game
+        }
+    }
+});
+
+// Add event each selection
+buttons.forEach((selection) => {
+    selection.addEventListener("click", () => {
+        disabledAction(true);
+        const playerSelect = selection.id;
+        playerSelection.textContent = "?";
+
+        const compSelect = getComputerChoice();
+        // delay here
+        let countDown = 0;
+        const interval = setInterval(() => {
+            let choiceIdx = Math.floor(Math.random() * choices.length);
+            compSelection.textContent = choices2[choiceIdx];
+            countDown++;
+            if (countDown >= 13) {
+                // Stop after 5 iterations (i.e., 500ms)
+                clearInterval(interval);
+            }
+        }, 200); // Update every 200ms
+
+        setTimeout(() => {
+            gameRounds(playerSelect, compSelect);
+
+            disabledAction(false);
+            if (players == 2 || computers == 2) {
+                disabledAction(false);
+
+                isGameRunning = false;
+                play.textContent = "Start Game";
+                gameOver.textContent =
+                    players > computers ? "Congrats" : "HAHAHA";
+                gameResult.textContent =
+                    players > computers ? "YOU WIN" : "YOU LOSE";
+                modal.style.display = "block";
+            }
+        }, 3000); // 3 second delay
+    });
+});
 
 let scores = () => {
     playerScore.textContent = players;
     compScore.textContent = computers;
 };
-
-play.addEventListener("click", () => {
-    const text = play.textContent;
-    if (text == "Start Game") {
-        computers = 0;
-        players = 0;
-        scores();
-        play.textContent = "Stop Game";
-        disabledAction(false);
-        gameOver.textContent = "";
-        gameResult.textContent = "";
-    } else {
-        play.textContent = "Start Game";
-        disabledAction(true);
-    }
-});
 
 function getComputerChoice() {
     let choiceIdx = Math.floor(Math.random() * choices.length);
@@ -67,7 +117,7 @@ function gameRounds(playerSelect, compSelect) {
     } else if (roundRslt === "LOSE") {
         testMsg = "is beaten by";
         computers++;
-    } else if (roundRslt === "TIE") {
+    } else if (roundRslt === "DRAW") {
         testMsg = "ties with";
     }
     roundsResult.textContent =
@@ -80,26 +130,20 @@ function gameRounds(playerSelect, compSelect) {
     compSelection.textContent = choices2[compSelect];
 }
 
-// Add event each selection
-buttons.forEach((selection) => {
-    selection.addEventListener("click", () => {
-        const playerSelect = selection.id;
-        const compSelect = getComputerChoice();
-
-        gameRounds(playerSelect, compSelect);
-
-        if (players == 5 || computers == 5) {
-            disabledAction(true);
-            play.textContent = "Start Game";
-            gameOver.textContent = "GAME OVER";
-            gameResult.textContent =
-                players > computers ? "YOU WIN" : "YOU LOSE";
-        }
-    });
-});
-
 function disabledAction(isDisable) {
     buttons.forEach((button) => {
         button.disabled = isDisable;
     });
 }
+
+span.onclick = function () {
+    modal.style.display = "none";
+};
+closeModal.onclick = function () {
+    modal.style.display = "none";
+};
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
