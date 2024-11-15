@@ -65,7 +65,7 @@ buttons.forEach((selection) => {
             gameRounds(playerSelect, compSelect);
 
             disabledAction(false);
-            if (players == 2 || computers == 2) {
+            if (players == 5 || computers == 5) {
                 disabledAction(false);
 
                 isGameRunning = false;
