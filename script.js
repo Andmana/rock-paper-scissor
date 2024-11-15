@@ -44,18 +44,31 @@ play.addEventListener("click", () => {
 // Add event each selection
 buttons.forEach((selection) => {
     selection.addEventListener("click", () => {
-        disabledAction(true);
+        selection.classList.add("button-28b");
         const playerSelect = selection.id;
-        playerSelection.textContent = "?";
+        let compSelect = getComputerChoice();
 
-        const compSelect = getComputerChoice();
+        disabledAction(true);
+        playerSelection.textContent = "?";
+        roundsResult.textContent = `You Choose ${choices[playerSelect]}`;
+
+        let countDown2 = 3;
+        roundsLog.textContent = countDown2;
+        const interval2 = setInterval(() => {
+            countDown2--;
+            roundsLog.textContent = countDown2;
+            if (countDown2 <= 0) {
+                clearInterval(interval2);
+            }
+        }, 1000);
+
         // delay here
         let countDown = 0;
         const interval = setInterval(() => {
-            let choiceIdx = Math.floor(Math.random() * choices.length);
-            compSelection.textContent = choices2[choiceIdx];
+            compSelect = Math.floor(Math.random() * choices.length);
+            compSelection.textContent = choices2[compSelect];
             countDown++;
-            if (countDown >= 13) {
+            if (countDown >= 16) {
                 // Stop after 5 iterations (i.e., 500ms)
                 clearInterval(interval);
             }
@@ -63,6 +76,7 @@ buttons.forEach((selection) => {
 
         setTimeout(() => {
             gameRounds(playerSelect, compSelect);
+            selection.classList.remove("button-28b");
 
             disabledAction(false);
             if (players == 5 || computers == 5) {
@@ -76,7 +90,7 @@ buttons.forEach((selection) => {
                     players > computers ? "YOU WIN" : "LOSER!";
                 modal.style.display = "block";
             }
-        }, 3000); // 3 second delay
+        }, 3800); // 3 second delay
     });
 });
 
