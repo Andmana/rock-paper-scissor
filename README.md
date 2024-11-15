@@ -12,3 +12,7 @@ Key Features:
 -   Simple game logic to determine the winner
 
 The primary goal of this project is to practice JavaScript fundamentals, including functions, loops, and conditionals. It serves as an introduction to interactive programming and basic game development.
+
+### Demo
+
+You can view the live demo of the landing page [here](https://andmana.github.io/rock-paper-scissor/).

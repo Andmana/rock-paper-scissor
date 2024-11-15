@@ -73,7 +73,7 @@ buttons.forEach((selection) => {
                 gameOver.textContent =
                     players > computers ? "Congrats" : "HAHAHA";
                 gameResult.textContent =
-                    players > computers ? "YOU WIN" : "YOU LOSE";
+                    players > computers ? "YOU WIN" : "LOSER!";
                 modal.style.display = "block";
             }
         }, 3000); // 3 second delay
